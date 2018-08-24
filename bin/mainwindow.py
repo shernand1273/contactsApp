@@ -1,3 +1,8 @@
+#Steven Hernandez
+#This application allows the user to create a contact list of people.  The user can add the person's information like email, phone, and addressself.
+#The user can then see a list of contacts as well as retrieve information from the contacts listself.
+#The data store for this application is a json file(contacts.json)
+
 import json
 import data
 import re

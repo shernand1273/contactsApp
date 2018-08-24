@@ -23,11 +23,6 @@ inputFields = AddInformationFields()
 
 
 class Ui_MainWindow(object):
-    #now we have to update the scroll bar in order to show the data that is available
-    def __init__(self):
-        self.programData = data.Data()
-        self.information=self.programData.getContacts()
-
 
 
     def setupUi(self, MainWindow):
@@ -49,7 +44,7 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")#we are using this to add text to the scroll area
         self.scrollAreaWidgetContents.setStyleSheet("background-color:white")
         self.scrollAreaWidgetContents.setLineWrapColumnOrWidth(220)
-    
+
         self.scrollAreaWidgetContents.setLineWrapMode(QtWidgets.QTextEdit.FixedPixelWidth)
         self.contactScrollArea.setWidget(self.scrollAreaWidgetContents)
 
@@ -124,12 +119,12 @@ class Ui_MainWindow(object):
 
         ########################BUttons in add Contact information label########
         self.addButton = QtWidgets.QPushButton(self.centralwidget)
-        self.addButton.setGeometry(QtCore.QRect(320, 535, 114, 32))
+        self.addButton.setGeometry(QtCore.QRect(270, 550, 60, 25))
         self.addButton.setObjectName("addButton")
         self.addButton.setStyleSheet("background-color:#42b6f4;color:white;border-radius:3px;font-weight:bold")
         self.addButton.clicked.connect(lambda: self.addData(self.addButton))
         self.clearButton = QtWidgets.QPushButton(self.centralwidget)
-        self.clearButton.setGeometry(QtCore.QRect(200, 535, 114, 32))
+        self.clearButton.setGeometry(QtCore.QRect(200, 550, 60, 25))
         self.clearButton.setObjectName("clearButton")
         self.clearButton.setStyleSheet("background-color:#42b6f4;color:white;border-radius:3px;font-weight:bold")
         self.clearButton.clicked.connect(lambda: self.clearInputFields(inputFields.getInputFieldOBJ()))
@@ -144,7 +139,7 @@ class Ui_MainWindow(object):
         self.addressLbl.setFont(font)
         self.addressLbl.setObjectName("addressLbl")
         self.addContactLabel = QtWidgets.QLabel(self.centralwidget)
-        self.addContactLabel.setGeometry(QtCore.QRect(190, 270, 611, 41))
+        self.addContactLabel.setGeometry(QtCore.QRect(190, 274, 611, 41))
         font = QtGui.QFont()
         font.setPointSize(18)
         font.setBold(True)
@@ -238,7 +233,7 @@ class Ui_MainWindow(object):
         self.horizontalDivider.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.horizontalDivider.setObjectName("horizontalDivider")
         self.informationViewFeedback = QtWidgets.QLabel(self.centralwidget)
-        self.informationViewFeedback.setGeometry(QtCore.QRect(439, 40, 301, 31))
+        self.informationViewFeedback.setGeometry(QtCore.QRect(200, 210, 301, 31))
         self.informationViewFeedback.setStyleSheet("color: rgb(252, 1, 7)")
         self.informationViewFeedback.setObjectName("informationViewFeedback")
         self.informationNameLbl = QtWidgets.QLabel(self.centralwidget)
@@ -273,18 +268,21 @@ class Ui_MainWindow(object):
         self.showAddressLbl2 = QtWidgets.QLabel(self.centralwidget)
         self.showAddressLbl2.setGeometry(QtCore.QRect(270, 180, 271, 16))
         self.showAddressLbl2.setObjectName("showAddressLbl2")
+        self.showAddressLbl3 =QtWidgets.QLabel(self.centralwidget)
+        self.showAddressLbl3.setGeometry(QtCore.QRect(270,200,271,16))
+        self.showAddressLbl3.setObjectName("showAddressLbl3")
         self.widget = QtWidgets.QWidget(self.centralwidget)
         self.widget.setGeometry(QtCore.QRect(200, 40, 231, 33))
         self.widget.setObjectName("widget")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.contactInput = QtWidgets.QLineEdit(self.widget)
+        self.contactInput = QtWidgets.QLineEdit(self.centralwidget)
         self.contactInput.setObjectName("contactInput")
-        self.horizontalLayout.addWidget(self.contactInput)
-        self.informationViewButton = QtWidgets.QPushButton(self.widget)
+        self.contactInput.setPlaceholderText("Enter contact name")
+        self.contactInput.setGeometry(200,240,180,25)
+        self.informationViewButton = QtWidgets.QPushButton(self.centralwidget)
         self.informationViewButton.setObjectName("informationViewButton")
-        self.horizontalLayout.addWidget(self.informationViewButton)
+        self.informationViewButton.setGeometry(390,240,60,25)
+        self.informationViewButton.setStyleSheet("background-color:#42b6f4;color:white;border-radius:3px;font-weight:bold")
+        self.informationViewButton.clicked.connect(lambda: self.view())
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -294,8 +292,7 @@ class Ui_MainWindow(object):
         self.actionInformation = QtWidgets.QAction(MainWindow)
         self.actionInformation.setObjectName("actionInformation")
         self.addFeedbackLabel = QtWidgets.QLabel(self.centralwidget)
-        self.addFeedbackLabel.setText("This is just testing how much i can add here dakfjdakf;daf dajfalksd;fda;flk end end end")
-        self.addFeedbackLabel.setGeometry(200,510,550,20)
+        self.addFeedbackLabel.setGeometry(200,525,550,20)
         self.addFeedbackLabel.setStyleSheet("color:white")
         self.totalContacts=QtWidgets.QLabel(self.centralwidget)
         self.totalContacts.setStyleSheet("color:white")
@@ -335,26 +332,26 @@ class Ui_MainWindow(object):
         self.zipLbl.setText(_translate("MainWindow", "Zip"))
         self.zipLbl.setStyleSheet("color:#d1d2d3")
         self.contactInformationHeader.setText(_translate("MainWindow", "Contact Information"))
-        self.informationViewFeedback.setText(_translate("MainWindow", "For feedback"))
         self.informationNameLbl.setText(_translate("MainWindow", "Name"))
         self.informationNameLbl.setStyleSheet("color:white;font-weight:bold")
         self.informationPhoneLbl.setText(_translate("MainWindow", "Phone"))
         self.informationPhoneLbl.setStyleSheet("color:white;font-weight:bold")
         self.informationEmailLbl.setText(_translate("MainWindow", "E-mail"))
         self.informationEmailLbl.setStyleSheet("color:white;font-weight:bold")
-        self.showNameLbl.setText(_translate("MainWindow", "testing"))
-        self.showNameLbl.setStyleSheet("color:#d1d2d3")
-        self.showPhoneLbl.setText(_translate("MainWindow", "testing"))
-        self.showPhoneLbl.setStyleSheet("color:#d1d2d3")
-        self.showEmailLbl.setText(_translate("MainWindow", "testing"))
-        self.showEmailLbl.setStyleSheet("color:#d1d2d3")
+        self.showNameLbl.setText(_translate("MainWindow", ""))
+        self.showNameLbl.setStyleSheet("color:#20c41d")
+        self.showPhoneLbl.setText(_translate("MainWindow", ""))
+        self.showPhoneLbl.setStyleSheet("color:#20c41d")
+        self.showEmailLbl.setText(_translate("MainWindow", ""))
+        self.showEmailLbl.setStyleSheet("color:#20c41d")
         self.addressInformationLbl.setText(_translate("MainWindow", "Address"))
         self.addressInformationLbl.setStyleSheet("color:white")
-        self.showAddressLbl1.setText(_translate("MainWindow", "TextLabel"))
-        self.showAddressLbl1.setStyleSheet("color:#d1d2d3")
-        self.showAddressLbl2.setText(_translate("MainWindow", "TextLabel"))
-        self.showAddressLbl2.setStyleSheet("color:#d1d2d3")
-        self.contactInput.setText(_translate("MainWindow", "steven hernandez"))
+        self.showAddressLbl1.setText(_translate("MainWindow", ""))
+        self.showAddressLbl1.setStyleSheet("color:#20c41d")
+        self.showAddressLbl2.setText(_translate("MainWindow", ""))
+        self.showAddressLbl2.setStyleSheet("color:#20c41d")
+        self.showAddressLbl3.setStyleSheet("color:#20c41d")
+        self.contactInput.setText(_translate("MainWindow",""))
         self.informationViewButton.setText(_translate("MainWindow", "view"))
         self.actionDocumentation.setText(_translate("MainWindow", "Documentation"))
         self.actionInformation.setText(_translate("MainWindow", "Information"))
@@ -429,7 +426,7 @@ class Ui_MainWindow(object):
                 #open up the json file and write this data to the File
                 self.w_file= open("../data/contacts.json","w+")
                 self.w_file.write(self.writeData)
-                self.updateAddFeedbackLabel("Contact Saved","valid")
+                self.updateLabel(self.addFeedbackLabel,"Contact Saved","valid")
                 self.w_file.close()
 
                 self.updateScrollArea()
@@ -459,7 +456,7 @@ class Ui_MainWindow(object):
         self.isValid=False #this is the flag that will be returned
         self.addressEmpty=0#we are going to assume that the address field was not added by the user.  It will make more sense below
 
-        #These are all the errors that can be sent to the updateAddFeedbackLabel() to show the user what is going on, we are using that same function for feedback if all input is valid as well
+        #These are all the errors that can be sent to the updateLabel() to show the user what is going on, we are using that same function for feedback if all input is valid as well
         self.error1 ="Invalid: One or more required field is empty."
         self.error2 ="Invalid: Only letters allowed in name fields."
         self.error3 ="Invalid: The phone number entered is not valid, use the right format."
@@ -468,8 +465,8 @@ class Ui_MainWindow(object):
         self.error6 ="Invalid: One or more address fields missing."
         #check that the required fields are entered
         if(len(first)==0 or len(last)==0 or len(phone)==0):
-            #call the updateAddFeedbackLabel() to let the user know the input is not valid
-            self.updateAddFeedbackLabel(self.error1,"error")
+            #call the updateLabel() to let the user know the input is not valid
+            self.updateLabel(self.addFeedbackLabel,self.error1,"error")
             return self.isValid
 
         #if all the required fields have something in them, then check all values to make sure they are valid.
@@ -483,7 +480,7 @@ class Ui_MainWindow(object):
                 self.isValid=True
             else:
                 #let user know there is an error
-                self.updateAddFeedbackLabel(self.error2,"error")
+                self.updateLabel(self.addFeedbackLabel,self.error2,"error")
                 self.isValid =False
                 return self.isValid
 
@@ -493,7 +490,7 @@ class Ui_MainWindow(object):
                 self.isValid=True
             else:
                 #let the user know there is an error
-                self.updateAddFeedbackLabel(self.error2,"error")
+                self.updateLabel(self.addFeedbackLabel,self.error2,"error")
                 self.isValid = False
                 return self.isValid
 
@@ -503,7 +500,7 @@ class Ui_MainWindow(object):
                 self.isValid = True
             else:
                 #the user messed up, so we are going to let him know
-                self.updateAddFeedbackLabel(self.error3,"error")
+                self.updateLabel(self.addFeedbackLabel,self.error3,"error")
                 self.isValid=False
                 return self.isValid
 
@@ -518,7 +515,7 @@ class Ui_MainWindow(object):
 
             else:
                 #let the user know that he needs to go back and check the email
-                self.updateAddFeedbackLabel(self.error4,"error")
+                self.updateLabel(self.addFeedbackLabel,self.error4,"error")
                 self.isValid = False
                 return self.isValid
 
@@ -551,11 +548,11 @@ class Ui_MainWindow(object):
                         self.isValid=False
 
                 else:
-                    self.updateAddFeedbackLabel(self.error5,"error")
+                    self.updateLabel(self.addFeedself,self.error5,"error")
                     self.isValid=False
                     return self.isValid
             else:
-                self.updateAddFeedbackLabel(self.error6,"error")
+                self.updateLabel(self.addFeedbackLabel,self.error6,"error")
                 self.isValid=False
                 return self.isValid
 
@@ -568,13 +565,15 @@ class Ui_MainWindow(object):
 
         return self.isValid
 
-    def updateAddFeedbackLabel(self,message,event):
-        self.addFeedbackLabel.setText(message)
+    def updateLabel(self,theLabel,message,event):
+        theLabel.setText(message)
 
         if(event =="error"):
-            self.addFeedbackLabel.setStyleSheet("color:#ed1a12;font:16pt")
-        elif(event=="valid"):
-            self.addFeedbackLabel.setStyleSheet("color:#20c41d")
+            theLabel.setStyleSheet("color:#ed1a12;font:14pt")
+        if(event=="valid"):
+            theLabel.setStyleSheet("color:#20c41d;font:14pt")
+        if(event=="notFound"):
+            theLabel.setStyleSheet("color:white;font:14pt")
 
     def validateStateAndZip(self,theState,thezip):
         #create a state object taht calls the Data() class to retreive the state list
@@ -589,7 +588,7 @@ class Ui_MainWindow(object):
             stateValid =True
 
         else:
-            self.updateAddFeedbackLabel("Invalid: Make sure the state is the abbreviation (example - vt or VT).","error")
+            self.updateLabel(self.addFeedbackLabel,"Invalid: Make sure the state is the abbreviation (example - vt or VT).","error")
             stateValid=False
 
 
@@ -597,7 +596,7 @@ class Ui_MainWindow(object):
             zipValid =True
 
         else:
-            self.updateAddFeedbackLabel("Invalid: Make sure that you entered a five digit zip code","error")
+            self.updateLabel(self.addFeedbackLabel,"Invalid: Make sure that you entered a five digit zip code","error")
             zipValid =False
 
 
@@ -626,7 +625,119 @@ class Ui_MainWindow(object):
             self.outString+= "{}. {} {}\n".format(self.count,self.first,self.last)
             self.scrollAreaWidgetContents.setText(self.outString)
 
+        self.totalContacts.setText("Total Contacts: "+str(self.count))
 
+
+    def view(self):
+        self.regexPattern =r"(\w+\s{1}\w+)"
+        self.objName = self.contactInput.text()
+
+        if(len(self.objName)==0):
+            self.updateLabel(self.informationViewFeedback,"Name field is empty.","error")
+
+        else:
+            #use a regular expression to check for the name pattern
+            if(re.search(self.regexPattern,self.objName)):
+                #split the string to count how many words in it, the regex tests against the pattern, but the test case is still true if the user enters another space and word(ie name lastname extraWord)
+                self.nameString = self.objName.split()
+                #check the length of the name string, if it is equal to 2, then the test fully passess
+                if(len(self.nameString)==2):
+                    #lets combine both strings into one because our object names do not have spaces between them
+
+                    self.f=self.nameString[0]
+                    self.l=self.nameString[1]
+                    #capitalize the first letter of both strings before combining them
+                    self.displayName=self.f+" "+self.l
+                    self.objName = self.f.title()+self.l.title()
+                    self.informationViewFeedback.setText("")
+                    #use another function to find the object and show the information to the user
+                    self.showInfo(self.objName,self.displayName)
+                else:
+                    self.updateLabel(self.informationViewFeedback,"Invalid: Too many values entered","error")
+            #if its not in the kesy, updateLabel() to tell the user that the name was not found
+
+            else:
+                self.updateLabel(self.informationViewFeedback,"Invalid: enter first and last name.","error")
+
+    #this function will find the object in the json file and retrieve the data to display it
+    def showInfo(self, theKey,theName):
+            #get the data keys from the json file
+        self.tempData = data.Data()
+        self.tempData = self.tempData.getContacts()
+        self.dictKeys = self.tempData.keys()
+        print(self.dictKeys)
+
+        if (theKey in self.dictKeys):
+            #if the name was fond, get the dictionary for it
+            self.tempData =self.tempData[theKey]
+            #get the first name
+            self.fst = self.tempData["first"]
+            #get the last name
+            self.lst = self.tempData["last"]
+            #get the phone
+            self.ph = self.tempData["phone"]
+            #get the email
+            self.eml = self.tempData["email"]
+            #get the address dictionary
+            self.addressDict = self.tempData["address"]
+            #get line1
+            self.l1 = self.addressDict["line1"]
+            #get line2
+            self.l2 = self.addressDict["line2"]
+            #get city
+            self.cty = self.addressDict["city"]
+            #get state
+            self.stt = self.addressDict["state"]
+            #get zip
+            self.zp = self.addressDict["zip"]
+
+            #start updating the labels with the information
+            self.showNameLbl.setText(theName.title())
+            self.showPhoneLbl.setText(self.ph)
+
+            #chec to see if the email is empty, if it is set the value to n/a
+            if(len(self.eml)==0):
+                self.showEmailLbl.setText("n/a")
+            else:
+                self.showEmailLbl.setText(self.eml)
+
+            #check that the first address line is empty, if it is, then we just update the address label with n/a
+
+            if(len(self.l1)==0):
+                print("No address Provided")
+                self.showAddressLbl1.setText("n/a")
+
+                #check if line 2 is empty or not (line2 is not required when entering an address)
+            else:
+                #there must be something in line1, so we are checking line 2 since its not necessary
+                if(len(self.l2)==0):
+                    #build the address display without line 2
+                    self.showAddressLbl1.setText(self.l1)
+                    self.showAddressLbl2.setText("{}, {} {}".format(self.cty.title(),self.stt.upper(),self.zp))
+
+                else:
+                    #build the address label with everything
+                    self.showAddressLbl1.setText(self.l1)
+                    self.showAddressLbl2.setText(self.l2)
+                    self.showAddressLbl3.setText("{}, {} {}".format(self.cty.title(),self.stt.upper(),self.zp))
+
+
+
+
+
+
+
+        elif(theKey not in self.dictKeys):
+            self.updateLabel(self.informationViewFeedback,"{} was not found in your contacts.".format(theName),"error")
+
+
+
+
+
+
+
+
+    #create a button "view in map/ the symbolfor map" and a button to "edit/ the ... vertical simbol" the contact
 
 
 def main():

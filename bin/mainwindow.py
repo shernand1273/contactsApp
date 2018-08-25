@@ -124,16 +124,17 @@ class Ui_MainWindow(object):
 
         ########################BUttons in add Contact information label########
         self.addButton = QtWidgets.QPushButton(self.centralwidget)
-        self.addButton.setGeometry(QtCore.QRect(270, 550, 60, 25))
+        self.addButton.setGeometry(QtCore.QRect(270, 540, 60, 25))
         self.addButton.setObjectName("addButton")
         self.addButton.setStyleSheet("background-color:#42b6f4;color:white;border-radius:3px;font-weight:bold")
         self.addButton.clicked.connect(lambda: self.addData(self.addButton))
+        self.addButton.pressed.connect(lambda: self.pressedButton(self.addButton))
         self.clearButton = QtWidgets.QPushButton(self.centralwidget)
-        self.clearButton.setGeometry(QtCore.QRect(200, 550, 60, 25))
+        self.clearButton.setGeometry(QtCore.QRect(200, 540, 60, 25))
         self.clearButton.setObjectName("clearButton")
         self.clearButton.setStyleSheet("background-color:#42b6f4;color:white;border-radius:3px;font-weight:bold")
         self.clearButton.clicked.connect(lambda: self.clearInputFields(inputFields.getInputFieldOBJ()))
-
+        self.clearButton.pressed.connect(lambda: self.pressedButton(self.clearButton))
         ########################################################################
 
         self.addressLbl = QtWidgets.QLabel(self.centralwidget)
@@ -288,6 +289,7 @@ class Ui_MainWindow(object):
         self.informationViewButton.setGeometry(390,240,60,25)
         self.informationViewButton.setStyleSheet("background-color:#42b6f4;color:white;border-radius:3px;font-weight:bold")
         self.informationViewButton.clicked.connect(lambda: self.view())
+        self.informationViewButton.pressed.connect(lambda: self.pressedButton(self.informationViewButton))
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -297,7 +299,7 @@ class Ui_MainWindow(object):
         self.actionInformation = QtWidgets.QAction(MainWindow)
         self.actionInformation.setObjectName("actionInformation")
         self.addFeedbackLabel = QtWidgets.QLabel(self.centralwidget)
-        self.addFeedbackLabel.setGeometry(200,525,550,20)
+        self.addFeedbackLabel.setGeometry(200,515,550,20)
         self.addFeedbackLabel.setStyleSheet("color:white")
         self.totalContacts=QtWidgets.QLabel(self.centralwidget)
         self.totalContacts.setStyleSheet("color:white")
@@ -727,17 +729,15 @@ class Ui_MainWindow(object):
                     self.showAddressLbl3.setText("{}, {} {}".format(self.cty.title(),self.stt.upper(),self.zp))
 
 
-
-
-
-
-
         elif(theKey not in self.dictKeys):
             self.updateLabel(self.informationViewFeedback,"{} was not found in your contacts.".format(theName),"error")
 
+    def pressedButton(self,pressedButton):
+        pressedButton.setStyleSheet("background-color:white;color:black;border-radius:3px;font-weight:bold")
+        pressedButton.released.connect(lambda: self.releasedButton(pressedButton))
 
-
-
+    def releasedButton(self,releasedButton):
+        releasedButton.setStyleSheet("background-color:#42b6f4;color:white;border-radius:3px;font-weight:bold")
 
 
 

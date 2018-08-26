@@ -51,6 +51,11 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents.setLineWrapColumnOrWidth(220)
 
         self.scrollAreaWidgetContents.setLineWrapMode(QtWidgets.QTextEdit.FixedPixelWidth)
+        
+        self.reloadButton =QtWidgets.QPushButton(self.centralwidget)
+        self.reloadButton.setGeometry(145,41,35,35)
+        self.reloadButton.setIcon(QtGui.QIcon("../img/reload.png"))
+        self.reloadButton.clicked.connect(self.updateScrollArea)
         self.contactScrollArea.setWidget(self.scrollAreaWidgetContents)
 
 
@@ -303,7 +308,7 @@ class Ui_MainWindow(object):
         self.addFeedbackLabel.setStyleSheet("color:white")
         self.totalContacts=QtWidgets.QLabel(self.centralwidget)
         self.totalContacts.setStyleSheet("color:white")
-        self.totalContacts.setGeometry(10,50,160,20)
+        self.totalContacts.setGeometry(10,50,100,20)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -632,7 +637,7 @@ class Ui_MainWindow(object):
             self.outString+= "{}. {} {}\n".format(self.count,self.first,self.last)
             self.scrollAreaWidgetContents.setText(self.outString)
 
-        self.totalContacts.setText("Total Contacts: "+str(self.count))
+        self.totalContacts.setText("Total: "+str(self.count))
 
 
     def view(self):

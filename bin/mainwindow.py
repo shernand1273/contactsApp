@@ -51,7 +51,7 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents.setLineWrapColumnOrWidth(220)
 
         self.scrollAreaWidgetContents.setLineWrapMode(QtWidgets.QTextEdit.FixedPixelWidth)
-        
+
         self.reloadButton =QtWidgets.QPushButton(self.centralwidget)
         self.reloadButton.setGeometry(145,41,35,35)
         self.reloadButton.setIcon(QtGui.QIcon("../img/reload.png"))
@@ -432,9 +432,6 @@ class Ui_MainWindow(object):
 
                 #now that we have the data written, we need to pass it to json format
                 self.writeData = json.dumps(self.dictionary)
-
-
-
                 #open up the json file and write this data to the File
                 self.w_file= open("../data/contacts.json","w+")
                 self.w_file.write(self.writeData)
@@ -442,6 +439,7 @@ class Ui_MainWindow(object):
                 self.w_file.close()
 
                 self.updateScrollArea()
+                
 
 
 
